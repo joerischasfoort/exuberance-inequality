@@ -19,7 +19,7 @@ CORES = NRUNS # set the amount of cores equal to the amount of runs
 problem = {
   'num_vars': 3,
   'names': ['std_noise', "w_random", "strat_share_chartists"],
-  'bounds': [[0.03, 0.09], [0.02, 0.15], [0.02, 0.3]]
+  'bounds': [[0.03, 0.09], [0.02, 0.15], [0.02, 0.7]]
 }
 
 with open('hypercube.txt', 'r') as f:
@@ -111,7 +111,7 @@ def pool_handler():
 
         return np.mean(costs)
 
-    output = constrNM(model_performance, init_parameters, LB, UB, maxiter=2, full_output=True)
+    output = constrNM(model_performance, init_parameters, LB, UB, maxiter=4, full_output=True)
 
     with open('estimated_params.json', 'w') as f:
         json.dump(list(output['xopt']), f)
