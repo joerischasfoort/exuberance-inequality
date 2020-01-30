@@ -32,7 +32,7 @@ UB = [x[1] for x in problem['bounds']]
 init_parameters = latin_hyper_cube[LATIN_NUMBER]
 
 params = {'trader_sample_size': 10, 'n_traders': 1000, 'init_stocks': 81, 'ticks': 604,
-              'fundamental_value': 1101.1096156039398, 'std_fundamental': 0.036138325335996965,
+              'fundamental_value': 1101.1096156039398, 'std_fundamental': 0.0,
               'base_risk_aversion': 0.7, 'spread_max': 0.004087, 'horizon': 211, 'std_noise': 0.01,
               'w_random': 1.0, 'mean_reversion': 0.0, 'fundamentalist_horizon_multiplier': 1.0,
               'strat_share_chartists': 0.0, 'mutation_intensity': 0.0, 'average_learning_ability': 0.0,
@@ -98,7 +98,7 @@ def pool_handler():
         # update params
         uncertain_parameters = dict(zip(problem['names'], new_input_params))
         params = {'trader_sample_size': 10, 'n_traders': 1000, 'init_stocks': 81, 'ticks': 604,
-              'fundamental_value': 1101.1096156039398, 'std_fundamental': 0.036138325335996965,
+              'fundamental_value': 1101.1096156039398, 'std_fundamental': 0.0,
               'base_risk_aversion': 0.7, 'spread_max': 0.004087, 'horizon': 211, 'std_noise': 0.01,
               'w_random': 1.0, 'mean_reversion': 0.0, 'fundamentalist_horizon_multiplier': 1.0,
               'strat_share_chartists': 0.0, 'mutation_intensity': 0.0, 'average_learning_ability': 0.0,
