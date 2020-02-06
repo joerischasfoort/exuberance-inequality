@@ -18,61 +18,6 @@ def init_objects(parameters, seed):
     traders = []
     n_traders = parameters["n_traders"]
 
-    weight_f = 1 - parameters['w_random']
-
-    f_points = int(weight_f * 100 * n_traders)
-    r_points = int(parameters['w_random'] * 100 * n_traders)
-
-    # create list of strategy points, shuffle it and divide in equal parts
-    strat_points = ['f' for f in range(f_points)] + ['r' for r in range(r_points)]
-    random.shuffle(strat_points)
-    agent_points = np.array_split(strat_points, n_traders)
-
-    #max_horizon = parameters['horizon'] * 2  # this is the max horizon of an agent if 100% fundamentalist
-    historical_stock_returns = np.random.normal(0, parameters["std_fundamental"], parameters['ticks'])#, max_horizon)
-
-    for idx in range(n_traders):
-        weight_fundamentalist = list(agent_points[idx]).count('f') / float(len(agent_points[idx]))
-        weight_random = list(agent_points[idx]).count('r') / float(len(agent_points[idx]))
-
-        init_stocks = int(np.random.uniform(0, parameters["init_stocks"]))
-        init_money = np.random.uniform(0, (parameters["init_stocks"] * parameters['fundamental_value']))
-
-        # initialize co_variance_matrix
-        init_covariance_matrix = calculate_covariance_matrix(historical_stock_returns, parameters["std_fundamental"])
-
-        lft_vars = TraderVariables(weight_fundamentalist, weight_random,
-                                               init_money, init_stocks, init_covariance_matrix,
-                                               parameters['fundamental_value'])
-
-        lft_params = TraderParameters(parameters["base_risk_aversion"], parameters['spread_max']) # parameters['horizon'], todo reinstate?
-        lft_expectations = TraderExpectations(parameters['fundamental_value'])
-        traders.append(Trader(idx, lft_vars, lft_params, lft_expectations))
-
-    orderbook = LimitOrderBook(parameters['fundamental_value'], parameters["std_fundamental"],
-                               parameters['ticks'],
-                               #max_horizon,
-                               parameters['ticks'])
-
-    # initialize order-book returns for initial variance calculations
-    orderbook.returns = list(historical_stock_returns)
-
-    return traders, orderbook
-
-
-def init_objects_distr(parameters, seed):
-    """
-    Init object for the distribution version of the model
-    :param parameters:
-    :param seed:
-    :return:
-    """
-    np.random.seed(seed)
-    random.seed(seed)
-
-    traders = []
-    n_traders = parameters["n_traders"]
-
     weight_f = (1 - parameters['strat_share_chartists']) * (1 - parameters['w_random'])
     weight_c = parameters['strat_share_chartists'] * (1 - parameters['w_random'])
 
@@ -85,56 +30,44 @@ def init_objects_distr(parameters, seed):
     random.shuffle(strat_points)
     agent_points = np.array_split(strat_points, n_traders)
 
-    max_horizon = parameters['horizon'] * 2  # this is the max horizon of an agent if 100% fundamentalist
-
-    if parameters["std_fundamental"] > 0.0:
-        historical_stock_returns = np.random.normal(0, parameters["std_fundamental"], max_horizon)
-    else:
-        historical_stock_returns = np.random.normal(0, parameters["std_noise"], max_horizon)
+    max_horizon = int(parameters['horizon'] * parameters['fundamentalist_horizon_multiplier']) + 1 # to offset rounding
+    historical_stock_returns = np.random.normal(0, parameters["std_noise"], max_horizon)
 
     for idx in range(n_traders):
-        weight_fundamentalist = list(agent_points[idx]).count('f') / float(len(agent_points[idx]))
-        weight_chartist = list(agent_points[idx]).count('c') / float(len(agent_points[idx]))
-        weight_random = list(agent_points[idx]).count('r') / float(len(agent_points[idx]))
+        weights = []
+        for typ in ['f', 'c', 'r']:
+            weights.append(list(agent_points[idx]).count(typ) / float(len(agent_points[idx])))
 
         init_stocks = int(np.random.uniform(0, parameters["init_stocks"]))
         init_money = np.random.uniform(0, (parameters["init_stocks"] * parameters['fundamental_value']))
 
-        if weight_random < 1.0:
-            c_share_strat = div0(weight_chartist, (weight_fundamentalist + weight_chartist))
+        # If there are chartists (c) & fundamentalists (f) in the model, keep track of the fraction between c & f.
+        if weights[2] < 1.0:
+            c_share_strat = div0(weights[1], (weights[0] + weights[1]))
         else:
             c_share_strat = 0.0
-        # initialize co_variance_matrix depending on whether std_fundamental is > 0
-        if parameters['std_fundamental'] > 0.0:
-            init_covariance_matrix = calculate_covariance_matrix(historical_stock_returns,
-                                                                 parameters["std_fundamental"])
-        else:
-            init_covariance_matrix = calculate_covariance_matrix(historical_stock_returns,
-                                                                 parameters["std_noise"])
 
-        lft_vars = TraderVariablesDistribution(weight_fundamentalist, weight_chartist, weight_random, c_share_strat,
-                                               init_money, init_stocks, init_covariance_matrix,
-                                               parameters['fundamental_value'])
+        init_covariance_matrix = calculate_covariance_matrix(historical_stock_returns, parameters["std_noise"])
 
-        # determine heterogeneous horizon and risk aversion based on
+        trader_vars = TraderVariables(weights[0], weights[1], weights[2], c_share_strat,
+                                   init_money, init_stocks, init_covariance_matrix,
+                                   parameters['fundamental_value'])
+
         individual_horizon = np.random.randint(10, parameters['horizon'])
 
         individual_risk_aversion = abs(np.random.normal(parameters["base_risk_aversion"], parameters["base_risk_aversion"] / 5.0))#parameters["base_risk_aversion"] * relative_fundamentalism
-        individual_learning_ability = min(abs(np.random.normal(parameters['average_learning_ability'], 0.1)), 1.0) #TODO what to do with std_dev
 
-        lft_params = TraderParametersDistribution(individual_horizon, individual_risk_aversion,
-                                                  individual_learning_ability, parameters['spread_max'])
-        lft_expectations = TraderExpectations(parameters['fundamental_value'])
-        traders.append(Trader(idx, lft_vars, lft_params, lft_expectations))
+        trader_params = TraderParameters(individual_horizon, individual_risk_aversion, parameters['spread_max'])
+        trader_expectations = TraderExpectations(parameters['fundamental_value'])
+        traders.append(Trader(idx, trader_vars, trader_params, trader_expectations))
 
-    orderbook = LimitOrderBook(parameters['fundamental_value'], parameters["std_fundamental"],
-                               max_horizon,
-                               parameters['ticks'])
+    order_book = LimitOrderBook(parameters['fundamental_value'], parameters["std_noise"], max_horizon,
+                                parameters['ticks'])
 
     # initialize order-book returns for initial variance calculations
-    orderbook.returns = list(historical_stock_returns)
+    order_book.returns = list(historical_stock_returns)
 
-    return traders, orderbook
+    return traders, order_book
 
 
 def init_objects_unequal(parameters, seed, equality=1.0):
@@ -193,9 +126,9 @@ def init_objects_unequal(parameters, seed, equality=1.0):
         # initialize co_variance_matrix
         init_covariance_matrix = calculate_covariance_matrix(historical_stock_returns, parameters["std_fundamental"])
 
-        lft_vars = TraderVariablesDistribution(weight_fundamentalist, weight_chartist, weight_random, c_share_strat,
-                                               init_money, init_stocks, init_covariance_matrix,
-                                               parameters['fundamental_value'])
+        lft_vars = TraderVariables(weight_fundamentalist, weight_chartist, weight_random, c_share_strat,
+                                   init_money, init_stocks, init_covariance_matrix,
+                                   parameters['fundamental_value'])
 
         # determine heterogeneous horizon and risk aversion based on
         individual_horizon = np.random.randint(10, parameters['horizon'])
@@ -203,8 +136,8 @@ def init_objects_unequal(parameters, seed, equality=1.0):
         individual_risk_aversion = abs(np.random.normal(parameters["base_risk_aversion"], parameters["base_risk_aversion"] / 5.0))#parameters["base_risk_aversion"] * relative_fundamentalism
         individual_learning_ability = min(abs(np.random.normal(parameters['average_learning_ability'], 0.1)), 1.0) #TODO what to do with std_dev
 
-        lft_params = TraderParametersDistribution(individual_horizon, individual_risk_aversion,
-                                                  individual_learning_ability, parameters['spread_max'])
+        lft_params = TraderParameters(individual_horizon, individual_risk_aversion,
+                                      individual_learning_ability, parameters['spread_max'])
         lft_expectations = TraderExpectations(parameters['fundamental_value'])
         traders.append(Trader(idx, lft_vars, lft_params, lft_expectations))
 
