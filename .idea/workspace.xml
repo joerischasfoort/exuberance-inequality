@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0c23ebe2-2ca2-488f-8f99-4ba6b2d3e72c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="fbdedcc3-7295-4152-8a7d-a3627d722ef2" />
+  <component name="ProjectId" id="1X6blYJZQzhexKEWFZT5szx32Vs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../RL-ABM" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Python.simulate">
+    <configuration name="calibrate_model_new" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="exuberance-inequality" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/calibrate_model_new.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="simulate" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="exuberance-inequality" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simulate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.simulate" />
+        <item itemvalue="Python.calibrate_model_new" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0c23ebe2-2ca2-488f-8f99-4ba6b2d3e72c" name="Default Changelist" comment="" />
+      <created>1580369642278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580369642278</updated>
+      <workItem from="1580369643723" duration="6312000" />
+      <workItem from="1580984415809" duration="38000" />
+      <workItem from="1580984495143" duration="58000" />
+      <workItem from="1580986617371" duration="6390000" />
+      <workItem from="1581321820590" duration="448000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="396" y="44" key="#xdebugger.evaluate" timestamp="1580378894834">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="396" y="44" key="#xdebugger.evaluate/0.0.1280.680@0.0.1280.680" timestamp="1580378894834" />
+    <state x="421" y="97" key="FileChooserDialogImpl" timestamp="1581322267227">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="97" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581322267227" />
+    <state width="1237" height="149" key="GridCell.Tab.0.bottom" timestamp="1581001602580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="149" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581001602580" />
+    <state width="1237" height="149" key="GridCell.Tab.0.center" timestamp="1581001602580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="149" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581001602580" />
+    <state width="1237" height="149" key="GridCell.Tab.0.left" timestamp="1581001602580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="149" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581001602580" />
+    <state width="1237" height="149" key="GridCell.Tab.0.right" timestamp="1581001602580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="149" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581001602580" />
+    <state width="1237" height="149" key="GridCell.Tab.1.bottom" timestamp="1581001602580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="149" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581001602580" />
+    <state width="1237" height="149" key="GridCell.Tab.1.center" timestamp="1581001602580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="149" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1581001602580" />
+    <state width="1237" height="149" key="GridCell.Tab.1.left" timestamp="1581001602580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="149" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1581001602580" />
+    <state width="1237" height="149" key="GridCell.Tab.1.right" timestamp="1581001602580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="149" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1581001602580" />
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1581321826337">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581321826337" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/exuberance_inequality$simulate.coverage" NAME="simulate Coverage Results" MODIFIED="1580995313315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/exuberance_inequality$calibrate_model_new.coverage" NAME="calibrate_model_new Coverage Results" MODIFIED="1580371190968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
