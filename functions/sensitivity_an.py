@@ -42,34 +42,9 @@ def simulate_params_efast(NRUNS, parameter_set, fixed_parameters):
             fundamentals = pd.DataFrame([orbs[run].fundamental for run in range(NRUNS)]).transpose()
             pfs = (prices / fundamentals)[:-1]
             # calculate volatility
-            # detrend serie
-            #stock_cycle, stock_trend = sm.tsa.filters.hpfilter(pfs, lamb=100000000)
 
             av_volatility[scenario] = np.mean(pfs.std()) / np.mean(pfs)
 
         av_diff_BLR.append(np.mean(av_volatility[scenarios[1]] - av_volatility[scenarios[0]]))
 
     return av_diff_BLR
-
-# all_parameters = [{'std_noise': 0.08770628189875272,
-#   'w_random': 0.041863280762066316,
-#   'strat_share_chartists': 0.3214240696942189,
-#   'base_risk_aversion': 0.8559495496103791,
-#   'fundamentalist_horizon_multiplier': 3.933972354170189,
-#   'mutation_intensity': 0.311810716621035,
-#   'average_learning_ability': 0.6986081297643648}]
-# #
-# fixed_parameters = {"fundamental_value": 166,
-#              "trader_sample_size": 22,
-#              "n_traders": 1000,
-#              "ticks": 500,
-#              "std_fundamental": 0.053,
-#              "init_assets": 740,
-#              'spread_max': 0.004,
-#              'money_multiplier': 2.2,
-#              "horizon": 200,
-#              "trades_per_tick": 1,
-#              "bond_mean_reversion": 0.0, 'cb_pf_range': 0.05,
-#              "qe_perc_size": 0.16, "cb_size": 0.024, "qe_asset_index": 0, "qe_start": 0, "qe_end":0}
-# #
-# print(simulate_params_efast(NRUNS=2, parameter_set=all_parameters, fixed_parameters=fixed_parameters))

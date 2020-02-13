@@ -103,7 +103,6 @@ def organise_data(obs, burn_in_period=0):
     :param burn_in_period: integer period of observations which is discarded
     :return: Pandas DataFrames of prices, returns, autocorrelation in returns, autocorr_abs_returns, volatility, volume, fundamentals
     """
-    #burn_in_period = 100
     window = 20
     close_price = []
     returns = []

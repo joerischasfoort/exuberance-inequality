@@ -96,7 +96,6 @@ def correlation_volume_volatility(volume, returns, window):
     :param window: rolling window used to calculate return volatility
     :return: correlation between returns volatility and volume
     """
-    actual_simulated_correlation = []
     volume = pd.Series(volume)
     returns = pd.Series(returns)
     roller_returns = returns.rolling(window)
