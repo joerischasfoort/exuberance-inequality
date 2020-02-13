@@ -1,7 +1,6 @@
 from model import *
 from init_objects import init_objects
-from functions.helpers import organise_data
-from functions.evolutionaryalgo import *
+from functions.helpers import organise_data, quadratic_loss_function
 
 
 def model_performance(input_parameters):

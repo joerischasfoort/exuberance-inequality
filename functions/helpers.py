@@ -173,3 +173,19 @@ def ornstein_uhlenbeck_evolve(init_level, previous_level, sigma, mean_reversion,
         new_dr = fundamental_value[-1]
 
     return new_dr
+
+
+def quadratic_loss_function(m_sim, m_emp, weights):
+    """
+    Quadratic loss function to calculate deviation of simulated values from observed values
+    :param m_sim:
+    :param m_emp:
+    :param weights:
+    :return:
+    """
+    score = np.dot(np.dot(np.array([m_sim - m_emp]), weights), np.array([m_sim - m_emp]).transpose())[0][0]
+
+    if np.isnan(score):
+        return np.inf
+    else:
+        return score
