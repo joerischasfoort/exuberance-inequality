@@ -3,6 +3,7 @@ import time
 from multiprocessing import Pool
 import json
 import numpy as np
+from functions.stylizedfacts import autocorrelation_returns
 import math
 from hurst import compute_Hc
 
@@ -19,7 +20,7 @@ CORES = NRUNS # set the amount of cores equal to the amount of runs
 problem = {
   'num_vars': 3,
   'names': ['std_noise', "w_random", "strat_share_chartists"],
-  'bounds': [[0.03, 0.09], [0.02, 0.15], [0.02, 0.7]]
+  'bounds': [[0.03, 0.09], [0.02, 0.15], [0.02, 0.8]]
 }
 
 with open('hypercube.txt', 'r') as f:
